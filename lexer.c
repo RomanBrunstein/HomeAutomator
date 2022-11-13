@@ -121,7 +121,7 @@ static command_status_e process_command_scheme(lexer_t *lexer)
         goto exit;
     }
 
-    if (!lexer->command_handler->verifier(lexer))
+    if (lexer->command_handler->verifier && !lexer->command_handler->verifier(lexer))
     {
         status = UNVERIFIED;
         goto exit;
