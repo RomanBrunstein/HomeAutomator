@@ -13,21 +13,20 @@ typedef struct
     uint8_t type;
     uint8_t spacer;
     uint8_t data[0];
-} command_t;
+} __attribute__((packed)) command_t;
 
 typedef struct lexer_s
 {
-    union
-    {
-        uint8_t *data;
-        command_t *command;
-    };
-
     size_t capacity;
     size_t size;
     read_func_t reader;
     lexer_command *command_handler;
     lexer_command *commands;
+    union
+    {
+        uint8_t *data;
+        command_t *command;
+    };
 } lexer_t;
 
 const size_t c_lexer_buffer_size = 255;

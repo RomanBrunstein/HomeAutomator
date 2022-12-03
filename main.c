@@ -22,7 +22,7 @@ bool wifi_send(void *channel, void *source, size_t size)
 
 typedef struct
 {
-    uint8_t a : 1, b : 1, c : 1, d : 1, e : 1, f : 1, g : 1, h : 1, i : 1, j : 1, k : 1;
+    uint8_t group;
 } lamps_t;
 
 static bool l_handler(const lexer_t *lexer)
@@ -52,11 +52,14 @@ static bool p_handler(const lexer_t *lexer)
 }
 
 lexer_command commands[] = {{.type = (uint8_t)'l', l_verifiy, l_handler},
-                            {.type = (uint8_t)'p', dont_check, p_handler},
+                            {.type = (uint8_t)'p', NULL, p_handler},
                             NULL};
+
+
 int main()
 {
     lexer_t *lexer = create_lexer(commands, read_wrapper, 255);
     lexer_run(lexer);
+
     return 0;
 }

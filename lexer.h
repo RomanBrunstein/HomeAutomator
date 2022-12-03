@@ -27,7 +27,6 @@ typedef struct
     command_handler handler;
 } lexer_command;
 
-
 /* getters */
 size_t lexer_get_data_size(const lexer_t *lexer);
 const uint8_t *lexer_get_data(const lexer_t *lexer);
@@ -38,7 +37,5 @@ bool dont_check(const lexer_t *lexer);
 
 lexer_t *create_lexer(lexer_command *commands, read_func_t reader, size_t capacity);
 void lexer_run(lexer_t *lexer);
-
-
 
 #endif /* __LEXER_H__ */
